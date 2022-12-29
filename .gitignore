@@ -1,0 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.docx
+
+# dependencies
+/Music-Server/node_modules
+/Music-Server/uploads
+/Music-Server/.pnp
+/Music-Server/.pnp.js
+/Music-Server/.env
+
+/Music-App/node_modules
+/Music-App/.pnp
+/Music-App/.pnp.js
+
+# testing
+/Music-Server/coverage
+/Music-App/coverage
+
+# production
+/Music-Server/build
+/Music-App/build
+
+# misc
+/Music-Server/.DS_Store
+/Music-Server/.env.local
+/Music-Server/.env.development.local
+/Music-Server/.env.test.local
+/Music-Server/.env.production.local
+
+/Music-App/.DS_Store
+/Music-App/.env
+/Music-App/.env.local
+/Music-App/.env.development.local
+/Music-App/.env.test.local
+/Music-App/.env.production.local
+
+/Music-Server/npm-debug.log*
+/Music-Server/yarn-debug.log*
+/Music-Server/yarn-error.log*
+
+/Music-App/npm-debug.log*
+/Music-App/yarn-debug.log*
+/Music-App/yarn-error.log*

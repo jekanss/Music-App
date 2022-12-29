@@ -1,0 +1,44 @@
+@tailwind components;
+
+.Poppins-Bold {
+  font-family: 'Poppins', serif;
+  font-weight: 700
+}
+
+.Poppins-SemiBold {
+  font-family: 'Poppins', serif;
+  font-weight: 500
+}
+
+.Poppins-Regular {
+  font-family: 'Poppins', serif;
+  font-weight: 400
+}
+
+@layer components{
+
+    .heading-primary{
+      @apply  Poppins-Bold text-3xl
+    }    
+
+    .heading-secondary{
+      @apply  Poppins-Bold text-2xl
+    }    
+    
+    .heading-tertiary{
+      @apply Poppins-SemiBold text-xl
+    }        
+
+    .Poppins-B{
+      @apply Poppins-Bold
+    }
+
+    .Poppins-SB{
+      @apply Poppins-SemiBold
+    }
+
+    .Poppins-R{
+      @apply Poppins-Regular
+    }
+
+};
