@@ -7,6 +7,7 @@ import { Navigation } from './shared/Navigation';
 import { AppRoutes } from './routes/AppRoutes';
 import { BrowserRouter } from 'react-router-dom';
 import { useMusic } from './hooks/useMusic';
+import { MusicPlayer } from './components/MusicPlayer/MusicPlayer';
 
 export const MusicApp = () => {
 
@@ -23,6 +24,7 @@ export const MusicApp = () => {
             <div className='h-full hidden sm:block w-[35em] bg-black'>
             </div>
         </div>
+            {/* <MusicPlayer /> */}
       </BrowserRouter>
     </Provider>
   )

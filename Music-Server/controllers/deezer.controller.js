@@ -22,6 +22,29 @@ const getCharts = async (req = request, res = response) => {
 
 }
 
+const getPlaylist =  async (req = request, res = response) => {
+
+    const idPlaylist = req.params.idPlaylist
+
+    try {
+
+        const response = await fetch(`https://api.deezer.com/playlist/${idPlaylist}`);
+        const playlist = await response.json();  
+     
+        res.status(201).json({
+            playlist
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg: error
+        })
+    }
+}
+
 module.exports = {
-    getCharts
+    getCharts,
+    getPlaylist
 }

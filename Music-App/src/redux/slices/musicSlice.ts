@@ -3,21 +3,25 @@ import { MusicState } from "../../interface/redux";
 
 const initialState = {
   isLoading: false,
-  charts: {}
+  charts: {},
+  activePlaylist : {}
 } as unknown as MusicState
 
 export const musicSlice = createSlice({
   name: "music",
   initialState,
   reducers: {    
+    onLoading: (state , { payload }) => {     
+      state.isLoading = payload 
+    },
     onGetCharts: (state , { payload }) => { 
       state.charts = payload 
     },
-    onLoading: (state , { payload }) => {     
-      state.isLoading = payload 
+    onSetActivePlaylist: (state , { payload }) => { 
+      state.activePlaylist = payload 
     },
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { onGetCharts, onLoading } = musicSlice.actions;
+export const { onGetCharts, onLoading, onSetActivePlaylist } = musicSlice.actions;

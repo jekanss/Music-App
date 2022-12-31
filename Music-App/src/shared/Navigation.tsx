@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { HiHome, HiMicrophone, HiMusicNote, HiNewspaper, HiPlay } from 'react-icons/hi'
+import { HiHome, HiMicrophone, HiMusicNote, HiPlay } from 'react-icons/hi'
 
 export const Navigation = () => {
 
@@ -23,7 +23,7 @@ export const Navigation = () => {
                 </li>      
                 
                 <li>
-                    <NavLink to='/playlist' 
+                    <NavLink to='/playlists' 
                          className={ ( { isActive }) => `flex py-3 px-2 text-white Poppins-B text-basejustify-start items-center gap-3 rounded-full mx-2 
                                                             sm:rounded-lg transition-all duration-300 duration-300 hover:bg-white/10
                                                             ${ isActive && 'bg-gradient-to-l from-transparent to-gray-200/30 '}` } >

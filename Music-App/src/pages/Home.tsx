@@ -3,7 +3,7 @@ import { Albums } from '../components/HomePage/Albums';
 import { Artists } from '../components/HomePage/Artists';
 import { Playlists } from '../components/HomePage/Playlists';
 import { Podcasts } from '../components/HomePage/Podcasts';
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/Loader/Loader';
 
 import { useMusic } from '../hooks/useMusic';
 

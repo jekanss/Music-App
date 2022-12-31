@@ -5,11 +5,15 @@ import './css/typography.css';
 import './css/music.css';
 import reportWebVitals from './reportWebVitals';
 import { MusicApp } from './MusicApp';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <MusicApp />
+    <Provider store={ store }>
+      <MusicApp />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

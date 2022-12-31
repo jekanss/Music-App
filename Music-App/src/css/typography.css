@@ -26,7 +26,7 @@
     }    
     
     .heading-tertiary{
-      @apply Poppins-SemiBold text-xl
+      @apply Poppins-Bold text-xl
     }        
 
     .Poppins-B{
