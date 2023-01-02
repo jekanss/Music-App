@@ -1,5 +1,5 @@
 import { ChartsClass } from './charts';
-import { PlaylistClass } from './playlist';
+import { Datum, PlaylistClass } from './playlist';
 
 export interface RootState {
     music: MusicState
@@ -8,5 +8,8 @@ export interface RootState {
 export interface MusicState {
     isLoading: boolean,
     charts: ChartsClass
-    activePlaylist: PlaylistClass
+    activePlaylist: PlaylistClass,
+    error: any,
+    isPlaying: boolean,
+    activeSong: Datum,
 }

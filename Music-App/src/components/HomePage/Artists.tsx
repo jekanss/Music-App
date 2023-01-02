@@ -13,7 +13,7 @@ export const Artists = () => {
         <div className="py-5 w-full">
             <h2 className='heading-secondary text-white/90'>Artistas</h2>
             {
-              (charts.artists)
+              (charts?.artists)
                   &&
                     <>
                       <Carousel

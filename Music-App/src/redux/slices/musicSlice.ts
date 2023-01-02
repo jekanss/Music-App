@@ -4,7 +4,11 @@ import { MusicState } from "../../interface/redux";
 const initialState = {
   isLoading: false,
   charts: {},
-  activePlaylist : {}
+  activePlaylist : {},
+  error: null,
+  isPlaying: false,
+  activeSong: {},
+  activeSongs : []
 } as unknown as MusicState
 
 export const musicSlice = createSlice({
@@ -20,8 +24,18 @@ export const musicSlice = createSlice({
     onSetActivePlaylist: (state , { payload }) => { 
       state.activePlaylist = payload 
     },
+    onSetError: (state , { payload }) => { 
+      state.error = payload 
+    },    
+    onSetActiveSong: (state , { payload }) => { 
+      state.activeSong = payload 
+    },  
+    onPlayPause: ( state, { payload } ) => { 
+      state.isPlaying = payload
+    },    
+    
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { onGetCharts, onLoading, onSetActivePlaylist } = musicSlice.actions;
+export const { onGetCharts, onLoading, onSetActivePlaylist, onSetError, onSetActiveSong, onPlayPause } = musicSlice.actions;

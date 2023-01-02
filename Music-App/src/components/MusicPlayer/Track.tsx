@@ -1,25 +1,25 @@
 import React from 'react'
+import { useMusic } from '../../hooks/useMusic';
 
-interface TrackProps {
-  isPlaying : boolean,
-  isActive : boolean,
-  activeSong : any
-}
 
-export const Track = ( { isPlaying, isActive, activeSong } : TrackProps  ) => {
+
+export const Track = (  ) => {
+
+  const { activeSong, isPlaying } = useMusic();
+  
   return (
-    <div className="flex-1 flex items-center justify-start">
-    <div className={`${isPlaying && isActive ? 'animate-[spin_3s_linear_infinite]' : ''} hidden sm:block h-16 w-16 mr-4`}>
-      <img src={activeSong?.images?.coverart} alt="cover art" className="rounded-full" />
+    <div key={ activeSong.id } className="flex-1 flex items-center justify-start animate-fadeIn">
+      <div className={`${isPlaying  ? 'animate-pulse' : ''} hidden sm:block h-16 w-16 mr-4 `}>
+        <img src={activeSong?.album.cover_small} alt="cover art" className="rounded-full mt-1" />
+      </div>
+      <div className="w-[50%]">
+        <p className="truncate text-white font-bold text-lg">
+          {activeSong?.title}
+        </p>
+        <p className="truncate text-gray-300">
+          {activeSong.artist.name}
+        </p>
+      </div>
     </div>
-    <div className="w-[50%]">
-      <p className="truncate text-white font-bold text-lg">
-        {activeSong?.title ? activeSong?.title : 'No active Song'}
-      </p>
-      <p className="truncate text-gray-300">
-        {activeSong?.subtitle ? activeSong?.subtitle : 'No active Song'}
-      </p>
-    </div>
-  </div>
   )
 }

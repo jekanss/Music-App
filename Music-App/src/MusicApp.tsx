@@ -8,11 +8,16 @@ import { AppRoutes } from './routes/AppRoutes';
 import { BrowserRouter } from 'react-router-dom';
 import { useMusic } from './hooks/useMusic';
 import { MusicPlayer } from './components/MusicPlayer/MusicPlayer';
+import { ErrorPage } from './pages/ErrorPage';
 
 export const MusicApp = () => {
 
+  const { error } = useMusic();
+
+  if(error) return <ErrorPage />
+
   return (
-    <Provider store={ store }>
+   
       <BrowserRouter>
         <div className='h-screen w-full flex'>
             <div className="h-full w-auto sm:w-[20em] bg-black">
@@ -24,8 +29,8 @@ export const MusicApp = () => {
             <div className='h-full hidden sm:block w-[35em] bg-black'>
             </div>
         </div>
-            {/* <MusicPlayer /> */}
+            <MusicPlayer />
       </BrowserRouter>
-    </Provider>
+    
   )
 }

@@ -6,8 +6,7 @@ import { HiClock, HiPlay } from 'react-icons/hi'
 
 export const Playlist = () => {
 
-   const { charts, isLoading , getCharts, setActivePlaylist, activePlaylist } = useMusic();
-  
+   const { charts, isLoading , getCharts, setActivePlaylist, activePlaylist, setActiveSong, activeSong } = useMusic();  
 
    /**
     * Si recargan la página desde playlist y las charts son undefined hacemos la petición de nuevo a la api
@@ -48,7 +47,7 @@ export const Playlist = () => {
                                 <h1 className="heading-tertiary text-white mt-1">Canciones</h1>
                                 <div className="overflow-y-auto overflow-x-hidden block max-h-96 music-scroll">
                                     <table className="w-full  ">
-                                        <thead className="sticky bg-black top-0" >
+                                        <thead className="sticky bg-black top-0 z-10" >
                                             <tr>
                                                 <th scope="col" className="px-3 Poppins-SB py-3.5 text-left text-base font-semibold text-white/90">Título</th>                                         
                                                 <th scope="col" className="px-3 py-3.5 flex justify-center text-sm font-semibold text-gray-900">
@@ -59,7 +58,11 @@ export const Playlist = () => {
                                         <tbody className="divide-y divide-gray-300/30 h-96 overflow-y-auto  ">                                    
                                             {
                                                 activePlaylist.tracks?.data.map( track => (
-                                                    <tr className="cursor-pointer hover:scale-[1.02] group  duration-300 " >
+                                                    <tr 
+                                                        key={ track.id }
+                                                        onClick={ () => setActiveSong(track) }
+                                                        className={`cursor-pointer hover:scale-[1.02] group  duration-300
+                                                                    ${ activeSong.id === track.id ? 'shadow-lg shadow-purple-400/30' : '' }`} >
                                                         <td className="whitespace-nowrap flex items-center gap-3 Poppins-R py-4 text-sm font-medium text-white/80 px-3">
                                                             <div className="w-12 h-12 relative overflow-hidden rounded-lg">
                                                                 <img className="absolute inset-0 object-cover " src={track.album.cover_small} alt="playlistImage" />
@@ -68,7 +71,7 @@ export const Playlist = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="flex flex-col w-56 ">
-                                                                <p className="Poppins-SB text-white truncate">{track.title}</p>
+                                                                <p className={`Poppins-SB truncate ${ activeSong.id === track.id ? 'text-purple-300' : 'text-white' }`}>{track.title}</p>
                                                                 <p className="text-xs">{track.artist.name}</p>
                                                             </div>
                                                         </td>                                                   
@@ -88,7 +91,9 @@ export const Playlist = () => {
         <div className="mt-12 pb-20">
             {
                 charts.playlists?.data.map( playlist => (
-                    <div className="relative h-32 w-full overflow-hidden rounded-2xl cursor-pointer duration-300 hover:scale-[1.02] group mt-6">
+                    <div 
+                        key={ playlist.id }                   
+                        className="relative h-32 w-full overflow-hidden rounded-2xl cursor-pointer duration-300 hover:scale-[1.02] group mt-6">
                         <div className="relative h-32 w-full">
                             <img
                                 className="absolute inset-0 h-32 z-10 w-full object-cover" 
