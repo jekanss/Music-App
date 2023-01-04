@@ -1,0 +1,10 @@
+
+.upFadeIn{
+    animation: upFadeIn 0.3s linear forwards;
+    animation-delay: var(--i);
+}
+
+@keyframes upFadeIn {
+    0%{ opacity: 0; transform: translateY(50px);}
+    100%{ opacity: 1; transform: translateY(0);}
+}

@@ -44,7 +44,27 @@ const getPlaylist =  async (req = request, res = response) => {
     }
 }
 
+const search = async ( req= request, res = response ) => {
+
+    const query = req.params.query
+
+    try {
+
+        const response = await fetch(`https://api.deezer.com/search?q=${query}`);
+        const result = await response.json();  
+     
+        res.status(201).json({
+            result
+        })
+
+        
+    } catch (error) {
+        
+    }
+}
+
 module.exports = {
     getCharts,
-    getPlaylist
+    getPlaylist,
+    search
 }

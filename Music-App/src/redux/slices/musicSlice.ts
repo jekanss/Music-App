@@ -6,9 +6,12 @@ const initialState = {
   charts: {},
   activePlaylist : {},
   error: null,
+  isSearching: false,
   isPlaying: false,
+  currentSongIndex: 0,
   activeSong: {},
-  activeSongs : []
+  currentSongs : [],
+  results: null,
 } as unknown as MusicState
 
 export const musicSlice = createSlice({
@@ -22,20 +25,60 @@ export const musicSlice = createSlice({
       state.charts = payload 
     },
     onSetActivePlaylist: (state , { payload }) => { 
-      state.activePlaylist = payload 
+      state.activePlaylist = payload       
     },
     onSetError: (state , { payload }) => { 
       state.error = payload 
     },    
     onSetActiveSong: (state , { payload }) => { 
-      state.activeSong = payload 
+      state.activeSong = payload    
+    },  
+    onSetCurrentSongIndex: (state , { payload }) => { 
+      state.currentSongIndex = payload    
     },  
     onPlayPause: ( state, { payload } ) => { 
       state.isPlaying = payload
-    },    
+    },
+    onSetActiveSongs: ( state, { payload } ) => { 
+      state.currentSongs = payload
+    },   
+    onNextSong: ( state, { payload } ) => {
+      //Si hay canciones en el estado de currentSongs, quiere decir hay canciones en el arreglo, le damos a la siguiente  
+      if(state.currentSongs.length !==0 ){
+        state.activeSong = state.currentSongs[payload];
+        state.currentSongIndex = payload
+      }
+      state.isPlaying = true     
+    },   
+    onPrevSong: ( state, { payload } ) => { 
+      if(state.currentSongs.length !==0 ){
+        state.activeSong = state.currentSongs[payload];
+        state.currentSongIndex = payload
+      }
+      state.isPlaying = true 
+    },  
+    onSearching: (state , { payload }) => {     
+      state.isSearching = payload 
+    },
+    onSetSearchResults: ( state, { payload } ) => { 
+      state.results = payload
+    },     
     
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { onGetCharts, onLoading, onSetActivePlaylist, onSetError, onSetActiveSong, onPlayPause } = musicSlice.actions;
+export const { 
+  onGetCharts, 
+  onLoading, 
+  onPlayPause , 
+  onSetActivePlaylist, 
+  onSetActiveSong, 
+  onSetActiveSongs,
+  onSetError,
+  onSetCurrentSongIndex,
+  onNextSong,
+  onPrevSong,
+  onSetSearchResults,
+  onSearching
+} = musicSlice.actions;

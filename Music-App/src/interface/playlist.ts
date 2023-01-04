@@ -67,6 +67,7 @@ export interface Datum {
     artist:                  Creator;
     album:                   Album;
     type:                    DatumType;
+    songIndex?:              number;
 }
 
 export interface Album {

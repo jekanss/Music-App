@@ -8,20 +8,46 @@ import { SeekBar } from './SeekBar';
 
 export const MusicPlayer = () => {
 
-    const { activeSong, isPlaying } = useMusic();    
+    const { activeSong, isPlaying, nextSong, currentSongs, currentSongIndex, prevSong } = useMusic();    
  
     const [volume, setVolume] = useState(0.3); 
     const [shuffle, setShuffle] = useState(false);
     const [repeat, setRepeat] = useState(false); 
-    const [seekTime, setSeekTime] = useState(0); 
-    const [appTime, setAppTime] = useState(0);
+    const [currentSongTime, setCurrentSongTime] = useState(0);
+    const [seekTime, setSeekTime] = useState(0);
+  
 
     //Manejar el volumen de la canción
     const handleVolume = ( e: React.ChangeEvent<HTMLInputElement> ) => {       
         setVolume( Number(e.target.value));
     };
-  
-    
+
+
+    //siguiente canción
+    const handleNextSong = () => {  
+
+        //Si está activada la reproducción aleatoria
+        (shuffle)   
+                ? nextSong(Math.floor(Math.random() * currentSongs.length))
+                : nextSong((currentSongIndex + 1) % currentSongs.length)       
+               
+    };
+
+
+    //Canción anterior
+    const handlePrevSong = () => {
+
+        //Si la canción anterior llega a la primera canción de lista devolvemos el index de la última de la lista
+        if (currentSongIndex === 0) {
+          return prevSong(currentSongs.length - 1);
+        } 
+
+        (shuffle)   
+                ? prevSong(Math.floor(Math.random() * currentSongs.length))
+                : prevSong(currentSongIndex - 1);           
+       
+    };
+
 
     return (
         <>
@@ -29,13 +55,13 @@ export const MusicPlayer = () => {
             {
                 (activeSong.id)
                     &&
-                    <div className="fixed z-20 bg-black/80 backdrop-blur-[5px] bottom-0 left-0 m:px-12 px-8 w-full flex items-center justify-between">          
-                        <div className="flex-1 flex py-5 items-center justify-center">       
+                    <div className="fixed z-20 bg-gradient-to-r from-gray-900/80 to-black backdrop-blur-[5px] bottom-0 left-0 m:px-12 px-8 w-full flex items-center justify-between">          
+                        <div className="flex-1 flex py-4 items-center justify-center">       
                             <Track />
-                            <div className="flex flex-col justify-center items-center">
-                                <Controls repeat={repeat} shuffle={shuffle}  setRepeat={setRepeat} setShuffle={setShuffle}  />  
-                                <SeekBar value={seekTime} min={0} max={30} appTime={appTime} setSeekTime={setSeekTime} />
-                                <Player seekTime={seekTime} song={activeSong.preview} isPlaying={isPlaying} volume={ volume } repeat={repeat} />  
+                            <div className="flex flex-col justify-center items-center gap-2">
+                                <Controls repeat={repeat} shuffle={shuffle}  setRepeat={setRepeat} setShuffle={setShuffle} handleNextSong={handleNextSong} handlePrevSong={handlePrevSong}  />  
+                                <SeekBar currentSongTime={currentSongTime} min={0} max={30} setSeekTime={setSeekTime} setCurrentSongTime={setCurrentSongTime} />
+                                <Player seekTime={seekTime} song={activeSong.preview} isPlaying={isPlaying} volume={ volume } repeat={repeat} setCurrentSongTime={setCurrentSongTime} handleNextSong={ handleNextSong } />  
                             </div>
                             <VolumeBar value={ volume } min={0} max={1} handleVolume={ handleVolume } />               
                         </div>

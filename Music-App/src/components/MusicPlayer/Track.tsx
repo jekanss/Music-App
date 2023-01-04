@@ -1,8 +1,6 @@
 import React from 'react'
 import { useMusic } from '../../hooks/useMusic';
 
-
-
 export const Track = (  ) => {
 
   const { activeSong, isPlaying } = useMusic();
@@ -13,10 +11,10 @@ export const Track = (  ) => {
         <img src={activeSong?.album.cover_small} alt="cover art" className="rounded-full mt-1" />
       </div>
       <div className="w-[50%]">
-        <p className="truncate text-white font-bold text-lg">
+        <p className="truncate Poppins-B text-white font-bold text-base">
           {activeSong?.title}
         </p>
-        <p className="truncate text-gray-300">
+        <p className="truncate Poppins-R text-sm text-gray-300">
           {activeSong.artist.name}
         </p>
       </div>

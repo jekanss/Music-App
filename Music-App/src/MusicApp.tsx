@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { useMusic } from './hooks/useMusic';
 import { MusicPlayer } from './components/MusicPlayer/MusicPlayer';
 import { ErrorPage } from './pages/ErrorPage';
+import { Search } from './components/Search/Search';
 
 export const MusicApp = () => {
 
@@ -27,6 +28,7 @@ export const MusicApp = () => {
               <AppRoutes />
             </div>         
             <div className='h-full hidden sm:block w-[35em] bg-black'>
+              <Search />
             </div>
         </div>
             <MusicPlayer />

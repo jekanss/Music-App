@@ -32,7 +32,7 @@ module.exports = {
         boxSectionTeAyudamos: " 0px 19px 17px -5px rgba(9,231,142,0.25)",        
       },
       animation:{
-        'fadeIn': 'fadeIn 1s linear',   
+        'fadeIn': 'fadeIn 1s linear',          
       },
       keyframes:{        
         fadeIn:{
@@ -40,7 +40,7 @@ module.exports = {
           'from': {  opacity: 0 },
           //100%
           'to': {  opacity: 1 }
-        }
+        },      
       },
     },
   },

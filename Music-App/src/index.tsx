@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './css/typography.css';
+import './css/animations.css';
 import './css/music.css';
 import reportWebVitals from './reportWebVitals';
 import { MusicApp } from './MusicApp';

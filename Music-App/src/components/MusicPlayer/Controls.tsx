@@ -13,10 +13,12 @@ interface ControlsProps {
   shuffle : boolean,
   repeat : boolean,
   setShuffle : React.Dispatch<React.SetStateAction<boolean>>,
-  setRepeat : React.Dispatch<React.SetStateAction<boolean>>
+  setRepeat : React.Dispatch<React.SetStateAction<boolean>>,
+  handleNextSong: () => void,
+  handlePrevSong: () => void
 }
 
-export const Controls = ( { shuffle, repeat, setShuffle, setRepeat } : ControlsProps )  => {
+export const Controls = ( { shuffle, repeat, setShuffle, setRepeat, handleNextSong, handlePrevSong } : ControlsProps )  => {
 
     const { isPlaying , playPause } = useMusic();
 
@@ -36,21 +38,22 @@ export const Controls = ( { shuffle, repeat, setShuffle, setRepeat } : ControlsP
     <MdSkipPrevious
     size={30}
     color="#FFF"
-    className="cursor-pointer"   
+    className="cursor-pointer duration-300 active:scale-125"  
+    onClick={ handlePrevSong } 
     />
     
     {isPlaying ? (
       <BsFillPauseFill
         size={45}
         color="#FFF"       
-        className="cursor-pointer"
+        className="cursor-pointer duration-300 active:scale-125"
         onClick={ () => playPause(false) }
       />
     ) : (
       <BsFillPlayFill
         size={45}
         color="#FFF"       
-        className="cursor-pointer"
+        className="cursor-pointer duration-300 active:scale-125"
         onClick={ () => playPause(true) }
       />
     )}
@@ -58,7 +61,8 @@ export const Controls = ( { shuffle, repeat, setShuffle, setRepeat } : ControlsP
     <MdSkipNext
     size={30}
     color="#FFF"
-    className="cursor-pointer"      
+    className="cursor-pointer duration-300 active:scale-125"     
+    onClick={ handleNextSong } 
     />
     
     <BsShuffle
