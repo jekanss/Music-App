@@ -43,6 +43,7 @@ export const Search = () => {
             type="text"
             name="company-website"
             id="company-website"
+            autoComplete="off"
             className="block w-full bg-transparent Poppins-R text-white placeholder:text-white/40 rounded-lg py-1.5 px-3 border-2 duration-300 border-white/50 focus:border-white focus:ring-white sm:text-sm"
             placeholder="Busca por artista o canción..."
             onChange={ onHandleChange }
@@ -51,7 +52,7 @@ export const Search = () => {
       </div>
 
       {
-        ( results === null )
+        ( results === null || results.total === 0 )
             &&
              <p className="Poppins-R text-xs text-center mt-3 fadeIn" >Aún no has empezado a buscar o no se ha encontrado ningún resultado por tu criterio de búsqueda.</p>          
       }

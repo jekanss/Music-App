@@ -1,14 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useMusic } from "../../hooks/useMusic";
 
 interface AlbumCardProps {
     img?: string,
     artist?: string,
-    almbumName?: string
+    almbumName?: string,
+    idAlbum: number
 }
 
-export const AlbumCard = ( { img , artist, almbumName }:AlbumCardProps  ) => {
+export const AlbumCard = ( { img , artist, almbumName, idAlbum }:AlbumCardProps  ) => {
+
+  const { setActiveAlbum } = useMusic()
+
+  const navigate = useNavigate();
+
+  const handleClickAlbum = async( ) => {
+    await setActiveAlbum(idAlbum)
+    navigate('/albums', {
+      replace: true
+    })
+  }
+  
   return (
-    <div className="w-48  rounded-2xl bg-gradient-to-bl from-gray-900/20 to-gray-800 p-4 transition-all duration-300 
+    <div 
+        onClick={ handleClickAlbum }
+        className="w-48  rounded-2xl bg-gradient-to-bl from-gray-900/20 to-gray-800 p-4 transition-all duration-300 
         hover:scale-[1.01] hover:-translate-y-1 hover:shadow-md hover:shadow-purple-300/50 cursor-pointer">
       <div className="flex justify-center">
         <img

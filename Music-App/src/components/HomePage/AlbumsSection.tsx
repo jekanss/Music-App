@@ -5,28 +5,27 @@ import { ArtistCard } from './ArtistCard';
 import { useMusic } from '../../hooks/useMusic';
 import { responsive } from '../../assets/constants';
 import { AlbumCard } from './AlbumCard';
-import { PlayListCard } from './PlaylistCard';
 
-export const Playlists = () => {
+export const AlbumsSection = () => {
 
   const { charts } = useMusic();
 
   return (
-        <div className="w-full">
-            <h2 className='heading-secondary text-white/90'>Playlists</h2>
+        <div className="w-full mt-2">
+            <h2 className='heading-secondary text-white/90'>Álbumes</h2>
             {
-              (charts.playlists)
+              (charts.albums)
                   &&
                     <>
                       <Carousel
                           className="mt-3"
-                          autoPlaySpeed={5000}
+                          autoPlaySpeed={7000}
                           responsive={responsive}
                           autoPlay={true}
                           >                                                 
                             {
-                              charts.playlists.data.map( playlist => (
-                                  <PlayListCard key={playlist.id} img={playlist.picture} title={playlist.title} />
+                              charts.albums.data.map( album => (
+                                  <AlbumCard key={album.id} idAlbum={album.id} img={album.cover} artist={album.artist.name} almbumName={album.title} />
                               ))
                             }
                                                         

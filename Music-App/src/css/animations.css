@@ -4,7 +4,28 @@
     animation-delay: var(--i);
 }
 
+.toBlink{
+    animation: toBlink 2.5s linear infinite;    
+}
+
+.animate-colors{
+    animation: animate-colors 2.5s linear infinite; 
+}
+
 @keyframes upFadeIn {
     0%{ opacity: 0; transform: translateY(50px);}
     100%{ opacity: 1; transform: translateY(0);}
+}
+
+@keyframes toBlink {
+    0%{ opacity: 0.4;}
+    50%{ opacity: 1;}
+    100%{ opacity: 0.4;}
+}
+
+@keyframes animate-colors {
+    0%{ color: rgb(88 28 135) }
+    30%{ color: rgb(21 128 61) }
+    70%{ color: rgb(202 138 4) }
+    100%{ color: rgb(88 28 135) }
 }

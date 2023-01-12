@@ -3,15 +3,20 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import deezerApi from '../api/deezerApi';
-import { ChartsResponse, RootState, PlaylistResponse } from '../interface';
+import { ChartsResponse, RootState, PlaylistResponse, ArtistSongsResponse } from '../interface';
 import { Datum } from '../interface/playlist';
-import { onGetCharts, onLoading, onNextSong, onPlayPause, onPrevSong, onSearching, onSetActivePlaylist, onSetActiveSong, onSetActiveSongs, onSetCurrentSongIndex, onSetError, onSetSearchResults } from '../redux/slices/musicSlice';
-import { Result, SearchResponse } from '../interface/search';
+import { onGetCharts, onLoading, onNextSong, onPlayPause, onPrevSong, onSearching, onSetActiveAlbum, onSetActivePlaylist, onSetActiveSong, onSetActiveSongs, onSetArtistSongs, onSetCurrentSongIndex, onSetError, onSetSearchResults } from '../redux/slices/musicSlice';
+import { Result, SearchResponse, SongResult, } from '../interface/search';
+import { ArtistSong } from '../interface/artist';
+import { AlbumResponse, SongDataAlbum } from '../interface/album';
+
 
 
 export const useMusic = () => {
-
-  const { charts, isLoading, activePlaylist , error , isPlaying , activeSong, currentSongs, currentSongIndex, isSearching , results  } = useSelector( (state: RootState) => state.music );
+  
+  const { charts, isLoading, activePlaylist , error , isPlaying , 
+    activeSong, currentSongs, currentSongIndex, isSearching , results, artistSongs , activeAlbum } = useSelector( (state: RootState) => state.music );
+    
   const dispatch = useDispatch();
 
   const getCharts = async() => {
@@ -20,7 +25,6 @@ export const useMusic = () => {
       try {
         const { data }  = await deezerApi.get<ChartsResponse>('/charts' );         
         dispatch(onGetCharts(data.charts));
-        // scrollToContainer('#active-playlist')
         dispatch(onLoading(false));        
       } catch (error) {
         console.log(error);
@@ -28,7 +32,7 @@ export const useMusic = () => {
         dispatch(onGetCharts(null)) ; 
         dispatch(onLoading(false));
       }
-  }
+  }  
 
   const setActivePlaylist = async( idPlaylist: number ) => {
 
@@ -36,9 +40,8 @@ export const useMusic = () => {
     try {
       const { data }  = await deezerApi.get<PlaylistResponse>(`/playlist/${idPlaylist}`);  
       console.log(data)       
-      dispatch(onSetActivePlaylist(data.playlist));
-     
-      dispatch(onLoading(false));        
+      dispatch(onSetActivePlaylist(data.playlist));     
+      dispatch(onLoading(false));            
     } catch (error) {
       console.log(error);
       dispatch(onSetError(error));
@@ -47,7 +50,41 @@ export const useMusic = () => {
     }
   }
 
-  const setActiveSong = ( song: Datum ) => {
+  const setArtistSongs = async( idArtist: number ) => {
+
+    dispatch(onLoading(true));
+    try {
+      const { data }  = await deezerApi.get<ArtistSongsResponse>(`/artistSongs/${idArtist}`);  
+      console.log(data)       
+      dispatch(onSetArtistSongs(data.songsArtist.data));     
+      dispatch(onLoading(false));            
+    } catch (error) {
+      console.log(error);
+      dispatch(onSetError(error));
+      dispatch(onSetActivePlaylist(null)) ; 
+      dispatch(onLoading(false));
+    }
+  }
+
+  const setActiveAlbum = async( idAlbum: number ) => {
+
+      dispatch(onLoading(true));
+
+      try {
+        const { data }  = await deezerApi.get<AlbumResponse>(`/album/${idAlbum}`);  
+        console.log(data)       
+        dispatch(onSetActiveAlbum(data.album));     
+        dispatch(onLoading(false));            
+      } catch (error) {
+        console.log(error);
+        dispatch(onSetError(error));
+        dispatch(onSetActivePlaylist(null)) ; 
+        dispatch(onLoading(false));
+      }
+
+  }
+
+  const setActiveSong = ( song: Datum | SongResult | ArtistSong | SongDataAlbum ) => {
     dispatch(onSetActiveSong(song));
     dispatch(onPlayPause(false));
     setTimeout(() => {
@@ -55,12 +92,13 @@ export const useMusic = () => {
     }, 200);
     
   }
+  
 
   const setCurrentSongIndex = ( currentIndex: number ) => {
     dispatch(onSetCurrentSongIndex(currentIndex));
   }
 
-  const setActiveSongs = ( songs: Datum[] ) => {
+  const setActiveSongs = ( songs: Datum[] | SongResult[] | ArtistSong[] | SongDataAlbum[] | null ) => {
     dispatch(onSetActiveSongs(songs))
   }
 
@@ -112,7 +150,9 @@ export const useMusic = () => {
       currentSongIndex,
       isSearching,
       results,
-
+      artistSongs,
+      activeAlbum,
+      
       //Metodos
       getCharts,
       setActivePlaylist,
@@ -123,6 +163,8 @@ export const useMusic = () => {
       nextSong,
       prevSong,
       searchByQuery,   
-      setSearchResults,   
+      setSearchResults,  
+      setArtistSongs ,
+      setActiveAlbum
   }
 }

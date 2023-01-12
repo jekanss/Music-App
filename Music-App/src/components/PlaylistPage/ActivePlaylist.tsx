@@ -16,7 +16,7 @@ export const ActivePlaylist = ( ) => {
   }
 
   return (
-    <div id="#active-playlist" className="flex gap-6">
+    <div className="flex gap-6">
       <img
         className="h-96 w-1/2 rounded-3xl mt-4"
         src={activePlaylist?.picture_xl}

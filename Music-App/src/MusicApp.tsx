@@ -20,11 +20,13 @@ export const MusicApp = () => {
   return (
    
       <BrowserRouter>
-        <div className='h-screen w-full flex'>
-            <div className="h-full w-auto sm:w-[20em] bg-black">
+        <div className='h-screen w-full flex flex-col 
+                        md:flex-row'>
+            <div className="h-auto py-2 bg-black w-auto 
+                            md:h-full md:w-[20em]">
               <Navigation />
             </div>
-            <div className="h-auto w-full overflow-y-auto py-6 bg-black music-scroll">
+            <div className="h-auto w-full  overflow-y-auto py-6 bg-black music-scroll">
               <AppRoutes />
             </div>         
             <div className='h-full hidden sm:block w-[35em] bg-black'>

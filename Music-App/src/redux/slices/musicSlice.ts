@@ -9,8 +9,9 @@ const initialState = {
   isSearching: false,
   isPlaying: false,
   currentSongIndex: 0,
-  activeSong: {},
-  currentSongs : [],
+  activeSong: {}, 
+  activeAlbum : null,
+  artistSongs : null,  
   results: null,
 } as unknown as MusicState
 
@@ -41,7 +42,13 @@ export const musicSlice = createSlice({
     },
     onSetActiveSongs: ( state, { payload } ) => { 
       state.currentSongs = payload
-    },   
+    }, 
+    onSetArtistSongs: ( state, { payload } ) => { 
+      state.artistSongs = payload
+    },       
+    onSetActiveAlbum: ( state, { payload } ) => { 
+      state.activeAlbum = payload
+    },       
     onNextSong: ( state, { payload } ) => {
       //Si hay canciones en el estado de currentSongs, quiere decir hay canciones en el arreglo, le damos a la siguiente  
       if(state.currentSongs.length !==0 ){
@@ -80,5 +87,7 @@ export const {
   onNextSong,
   onPrevSong,
   onSetSearchResults,
-  onSearching
+  onSearching,  
+  onSetArtistSongs,
+  onSetActiveAlbum
 } = musicSlice.actions;

@@ -21,15 +21,15 @@ export const Playlist = () => {
         }
     }, [charts]);
 
-    useEffect(() => {        
 
-        //si charts es diferente de undefined:
-        if(charts.playlists){
-                    
+    useEffect(() => {    
+
+        if(activePlaylist.id){
+            setActivePlaylist(activePlaylist.id)
+        }else if((charts.playlists)){
             const playlists = charts.playlists?.data;  
             setActivePlaylist(playlists[0].id);
-     
-        }
+        }                  
 
     }, [charts]);    
 

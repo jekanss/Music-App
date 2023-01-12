@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { Albums } from '../components/HomePage/Albums';
-import { Artists } from '../components/HomePage/Artists';
-import { Playlists } from '../components/HomePage/Playlists';
-import { Podcasts } from '../components/HomePage/Podcasts';
+import { AlbumsSection } from '../components/HomePage/AlbumsSection';
+import { ArtistsSection } from '../components/HomePage/ArtistSection';
+import { PlaylistsSection } from '../components/HomePage/PlaylistsSection';
+import { PrincipalCover } from '../components/HomePage/PrincipalCover';
 import { Loader } from '../components/Loader/Loader';
 
 import { useMusic } from '../hooks/useMusic';
@@ -20,10 +20,10 @@ export const Home = () => {
   return (   
         <div className="animate-fadeIn w-full h-full mb-10 px-12">
             <h2 className='heading-primary text-white'>Explora</h2>
-            <Artists />  
-            <Playlists /> 
-            <Albums />    
-            <Podcasts />        
+            <PrincipalCover />
+            <ArtistsSection />  
+            <PlaylistsSection /> 
+            <AlbumsSection />   
         </div>    
   )
 }

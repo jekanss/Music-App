@@ -1,4 +1,6 @@
-import { ChartsClass } from './charts';
+import { Album } from './album';
+import { ArtistSong } from './artist';
+import { ArtistElement, ChartsClass } from './charts';
 import { Datum, PlaylistClass } from './playlist';
 import { Result } from './search';
 
@@ -7,15 +9,17 @@ export interface RootState {
 }
 
 export interface MusicState {
-    isLoading: boolean,
+    activeAlbum: Album,
+    activePlaylist: PlaylistClass,   
+    activeSong: Datum,
+    artistSongs: null | ArtistSong[]
     charts: ChartsClass
-    activePlaylist: PlaylistClass,
     currentSongIndex: number,
-    error: any,
+    currentSongs: Datum[]
+    error: any,   
+    isLoading: boolean,
     isPlaying: boolean,
     isSearching: boolean,
-    activeSong: Datum,
-    currentSongs: Datum[]
     results: Result | null
 }
 
