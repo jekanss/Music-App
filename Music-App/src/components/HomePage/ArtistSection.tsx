@@ -17,8 +17,8 @@ export const ArtistsSection = () => {
                   &&
                     <>
                       <Carousel
-                          className="mt-3"
-                          responsive={responsive}
+                          className="mt-3 z-20"
+                          responsive={responsive}                          
                           autoPlay={true}
                           >                                                 
                             {

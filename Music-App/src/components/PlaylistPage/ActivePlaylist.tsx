@@ -16,13 +16,15 @@ export const ActivePlaylist = ( ) => {
   }
 
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col lg:flex-row gap-6 w-full">
+
       <img
-        className="h-96 w-1/2 rounded-3xl mt-4"
+        className="w-full lg:w-1/2 rounded-3xl mt-4"
         src={activePlaylist?.picture_xl}
         alt="imagePlaylist"
       />
-      <div className="block max-h-96 w-1/2">
+
+      <div className="block max-h-96 w-full lg:w-1/2">
         <h1 className="heading-tertiary text-white mt-1">Canciones</h1>
         <div className="overflow-y-auto overflow-x-hidden block max-h-96 music-scroll">
           <table className="w-full  ">
@@ -66,7 +68,7 @@ export const ActivePlaylist = ( ) => {
                         <HiPlay className="w-6 h-6 text-white text-right" />
                       </div>
                     </div>
-                    <div className="flex flex-col w-56 ">
+                    <div className="flex flex-col w-40 lg:w-56">
                       <p
                         className={`Poppins-SB truncate ${
                           activeSong.id === track.id

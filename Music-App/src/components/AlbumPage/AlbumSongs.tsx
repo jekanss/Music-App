@@ -56,7 +56,7 @@ export const AlbumSongs = () => {
                     <HiPlay className="w-6 h-6 text-white text-right" />
                   </div>
                 </div>
-                <div className="flex flex-col w-56 ">
+                <div className="flex flex-col w-40 lg:w-56 ">
                   <p
                     className={`Poppins-SB truncate ${
                       activeSong.id === song.id

@@ -39,7 +39,8 @@ export const Playlist = () => {
    if(isLoading) return <Loader />
    
   return (
-    <div className="animate-fadeIn w-full h-full mb-10 px-12">
+    <div className="animate-fadeIn w-full h-full mb-10 px-2
+                    md:px-12">
         <h2 className='heading-primary text-white'>Playlists</h2>
 
         {  (activePlaylist) && <ActivePlaylist />     }

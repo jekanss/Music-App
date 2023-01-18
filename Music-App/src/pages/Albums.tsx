@@ -36,7 +36,9 @@ export const Albums = () => {
 
   return (
 
-    <div className="animate-fadeIn w-full h-full mb-96 px-12">
+    <div 
+      className="animate-fadeIn w-full h-full mb-10 px-2
+                 md:px-12">
         <h2 className='heading-primary text-white'>Albums</h2>
 
         {/* Cover Image */}

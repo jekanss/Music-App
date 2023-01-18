@@ -34,7 +34,8 @@ export const Artists = () => {
 
   return (
     <div       
-      className="animate-fadeIn w-full h-full mb-36 px-12">
+      className="animate-fadeIn w-full h-full mb-10 px-2
+                 md:px-12">
       <h2 className="heading-primary text-white">Artistas</h2>      
 
       { (artistSongs)  &&  <ActiveArtist />  }

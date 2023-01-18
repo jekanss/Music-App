@@ -21,17 +21,18 @@ export const ActiveArtist = () => {
 
   return (
     <div key={artistSongs![0].id ?? "emptyArtist"} className="animate-fadeIn">
+
       <h3 className="heading-secondary text-white mt-3">
         {artistSongs![0].artist.name}
       </h3>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6 w-full">
         <img
-          className="h-96 w-1/2 rounded-3xl mt-4"
+          className="h-96 w-full lg:w-1/2 rounded-3xl mt-4"
           src={artistSongs![0].album.cover_xl}
           alt="imagePlaylist"
         />
-        <div className="block max-h-96 w-1/2">
+        <div className="block max-h-96 w-full lg:w-1/2">
           <h1 className="heading-tertiary text-white mt-1">Canciones</h1>
           <div className="overflow-y-auto overflow-x-hidden block max-h-96 music-scroll">
             <table className="w-full  ">
@@ -74,7 +75,7 @@ export const ActiveArtist = () => {
                           <HiPlay className="w-6 h-6 text-white text-right" />
                         </div>
                       </div>
-                      <div className="flex flex-col w-56 ">
+                      <div className="flex flex-col w-40 lg:w-56 ">
                         <p
                           className={`Poppins-SB truncate ${
                             activeSong.id === song.id

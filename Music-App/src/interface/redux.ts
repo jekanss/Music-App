@@ -5,7 +5,8 @@ import { Datum, PlaylistClass } from './playlist';
 import { Result } from './search';
 
 export interface RootState {
-    music: MusicState
+    music: MusicState,
+    ui: UIState
 }
 
 export interface MusicState {
@@ -21,6 +22,10 @@ export interface MusicState {
     isPlaying: boolean,
     isSearching: boolean,
     results: Result | null
+}
+
+export interface UIState {
+    isSearchingMobile: boolean
 }
 
 

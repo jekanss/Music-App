@@ -11,7 +11,6 @@ import { ArtistSong } from '../interface/artist';
 import { AlbumResponse, SongDataAlbum } from '../interface/album';
 
 
-
 export const useMusic = () => {
   
   const { charts, isLoading, activePlaylist , error , isPlaying , 

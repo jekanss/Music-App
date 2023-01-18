@@ -55,7 +55,8 @@ export const MusicPlayer = () => {
             {
                 (activeSong.id)
                     &&
-                    <div className="fixed z-20 bg-gradient-to-r from-gray-900/80 to-black backdrop-blur-[5px] bottom-0 left-0 m:px-12 px-8 w-full flex items-center justify-between">          
+                    <div className="fixed z-40 flex items-center justify-between px-4 bottom-20 bg-gradient-to-r from-gray-900/80 to-black backdrop-blur-[5px] left-0 w-full 
+                                    md:bottom-0 md:px-12">          
                         <div className="flex-1 flex py-4 items-center justify-center">       
                             <Track />
                             <div className="flex flex-col justify-center items-center gap-2">

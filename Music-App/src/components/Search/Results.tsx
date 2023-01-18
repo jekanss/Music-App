@@ -15,7 +15,7 @@ export const Results = () => {
    }
  
   return (
-    <ul className="mt-2 flex-grow overflow-y-auto overflow-x-hidden music-scroll mb-24  ">     
+    <ul className="mt-2 flex-grow overflow-y-auto overflow-x-hidden music-scroll   ">     
         {
             results?.data.map( (result, i) => (
 

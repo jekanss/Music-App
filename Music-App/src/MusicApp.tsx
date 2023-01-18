@@ -10,6 +10,7 @@ import { useMusic } from './hooks/useMusic';
 import { MusicPlayer } from './components/MusicPlayer/MusicPlayer';
 import { ErrorPage } from './pages/ErrorPage';
 import { Search } from './components/Search/Search';
+import { SearchMobileMenu } from './components/Search/SearchMobileMenu';
 
 export const MusicApp = () => {
 
@@ -22,18 +23,20 @@ export const MusicApp = () => {
       <BrowserRouter>
         <div className='h-screen w-full flex flex-col 
                         md:flex-row'>
-            <div className="h-auto py-2 bg-black w-auto 
-                            md:h-full md:w-[20em]">
+            <div className="h-auto order-3 py-2 bg-black w-auto 
+                            md:h-full md:w-[20em]
+                            md:order-1">
               <Navigation />
             </div>
-            <div className="h-auto w-full  overflow-y-auto py-6 bg-black music-scroll">
+            <div className="h-auto w-full overflow-y-auto py-6 bg-black music-scroll md:order-2">
               <AppRoutes />
             </div>         
-            <div className='h-full hidden sm:block w-[35em] bg-black'>
+            <div className='h-full hidden lg:block w-[35em] bg-black lg:order-3'>
               <Search />
             </div>
         </div>
             <MusicPlayer />
+            <SearchMobileMenu />
       </BrowserRouter>
     
   )
